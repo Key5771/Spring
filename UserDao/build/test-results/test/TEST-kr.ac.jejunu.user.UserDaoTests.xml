@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="kr.ac.jejunu.user.UserDaoTests" tests="4" skipped="0" failures="4" errors="0" timestamp="2020-04-17T09:00:03" hostname="gimgihyeon-ui-MacBookPro.local" time="0.183">
+<testsuite name="kr.ac.jejunu.user.UserDaoTests" tests="4" skipped="0" failures="4" errors="0" timestamp="2020-04-17T10:00:03" hostname="gimgihyeon-ui-MacBookPro.local" time="0.166">
   <properties/>
-  <testcase name="insert()" classname="kr.ac.jejunu.user.UserDaoTests" time="0.17">
+  <testcase name="insert()" classname="kr.ac.jejunu.user.UserDaoTests" time="0.156">
     <failure message="com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure&#10;&#10;The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server." type="com.mysql.cj.jdbc.exceptions.CommunicationsException">com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
 
 The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
@@ -13,9 +13,9 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
-	at kr.ac.jejunu.user.JejuUserDao.getConnection(JejuUserDao.java:12)
-	at kr.ac.jejunu.user.UserDao.insert(UserDao.java:34)
-	at kr.ac.jejunu.user.UserDaoTests.insert(UserDaoTests.java:34)
+	at kr.ac.jejunu.user.JejuConnectionMaker.getConnection(JejuConnectionMaker.java:12)
+	at kr.ac.jejunu.user.UserDao.insert(UserDao.java:39)
+	at kr.ac.jejunu.user.UserDaoTests.insert(UserDaoTests.java:36)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -144,9 +144,9 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
-	at kr.ac.jejunu.user.HallaUserDao.getConnection(HallaUserDao.java:12)
-	at kr.ac.jejunu.user.UserDao.insert(UserDao.java:34)
-	at kr.ac.jejunu.user.UserDaoTests.insertHalla(UserDaoTests.java:61)
+	at kr.ac.jejunu.user.HallaConnectionMaker.getConnection(HallaConnectionMaker.java:12)
+	at kr.ac.jejunu.user.UserDao.insert(UserDao.java:39)
+	at kr.ac.jejunu.user.UserDaoTests.insertHalla(UserDaoTests.java:65)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -263,7 +263,7 @@ Caused by: java.net.ConnectException: Connection refused (Connection refused)
 	... 99 more
 </failure>
   </testcase>
-  <testcase name="get()" classname="kr.ac.jejunu.user.UserDaoTests" time="0.003">
+  <testcase name="get()" classname="kr.ac.jejunu.user.UserDaoTests" time="0.002">
     <failure message="com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure&#10;&#10;The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server." type="com.mysql.cj.jdbc.exceptions.CommunicationsException">com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
 
 The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
@@ -275,9 +275,9 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
-	at kr.ac.jejunu.user.JejuUserDao.getConnection(JejuUserDao.java:12)
-	at kr.ac.jejunu.user.UserDao.get(UserDao.java:10)
-	at kr.ac.jejunu.user.UserDaoTests.get(UserDaoTests.java:21)
+	at kr.ac.jejunu.user.JejuConnectionMaker.getConnection(JejuConnectionMaker.java:12)
+	at kr.ac.jejunu.user.UserDao.get(UserDao.java:15)
+	at kr.ac.jejunu.user.UserDaoTests.get(UserDaoTests.java:22)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -406,9 +406,9 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
-	at kr.ac.jejunu.user.HallaUserDao.getConnection(HallaUserDao.java:12)
-	at kr.ac.jejunu.user.UserDao.get(UserDao.java:10)
-	at kr.ac.jejunu.user.UserDaoTests.getHalla(UserDaoTests.java:48)
+	at kr.ac.jejunu.user.HallaConnectionMaker.getConnection(HallaConnectionMaker.java:12)
+	at kr.ac.jejunu.user.UserDao.get(UserDao.java:15)
+	at kr.ac.jejunu.user.UserDaoTests.getHalla(UserDaoTests.java:51)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
