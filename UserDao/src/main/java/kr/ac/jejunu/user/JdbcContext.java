@@ -1,10 +1,7 @@
 package kr.ac.jejunu.user;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class JdbcContext {
     private final DataSource dataSource;
@@ -104,5 +101,39 @@ public class JdbcContext {
                 e.printStackTrace();
             }
         }
+    }
+
+    User get(String sql, Object[] param) throws SQLException {
+        StatementStrategy statementStrategy = connection -> {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            for (int i = 0; i < param.length; i++) {
+                preparedStatement.setObject(i + 1, param[i]);
+            }
+            return preparedStatement;
+        };
+        // 결과리턴
+        return jdbcContextForGet(statementStrategy);
+    }
+
+    void insert(User user, Object[] param, String sql) throws SQLException {
+        StatementStrategy statementStrategy = connection -> {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            for (int i = 0; i < param.length; i++) {
+                preparedStatement.setObject(i + 1, param[i]);
+            }
+            return preparedStatement;
+        };
+        jdbcContextForInsert(user, statementStrategy);
+    }
+
+    void update(String sql, Object[] param) throws SQLException {
+        StatementStrategy statementStrategy = connection -> {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            for (int i = 0; i < param.length; i++) {
+                preparedStatement.setObject(i + 1, param[i]);
+            }
+            return preparedStatement;
+        };
+        jdbcContextForUpdate(statementStrategy);
     }
 }
