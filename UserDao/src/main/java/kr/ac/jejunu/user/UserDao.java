@@ -20,8 +20,10 @@ public class UserDao {
             // driver 로딩
             connection = dataSource.getConnection();
             // query
-            preparedStatement = connection.prepareStatement("select id, name, password from userinfo where id = ?");
-            preparedStatement.setInt(1, id);
+
+            StatementStrategy statementStrategy = new GetStatementStrategy();
+            preparedStatement = statementStrategy.makeStatement(id, connection);
+
             // 실행
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -64,9 +66,10 @@ public class UserDao {
             // driver 로딩
             connection = dataSource.getConnection();
             // query
-            preparedStatement = connection.prepareStatement("insert into userinfo (name, password) values (?, ?)",  Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getPassword());
+
+            StatementStrategy statementStrategy = new InsertStatementStrategy();
+            preparedStatement = statementStrategy.makeStatement(user, connection);
+
             preparedStatement.executeUpdate();
             resultSet = preparedStatement.getGeneratedKeys();
             resultSet.next();
@@ -94,15 +97,11 @@ public class UserDao {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
-            // mysql
-            // driver 로딩
             connection = dataSource.getConnection();
-            // query
-            preparedStatement = connection.prepareStatement(
-                    "update userinfo set name = ?, password = ? where id = ?");
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setInt(3, user.getId());
+
+            StatementStrategy statementStrategy = new UpdateStatementStrategy();
+            preparedStatement = statementStrategy.makeStatement(user, connection);
+
             preparedStatement.executeUpdate();
         } finally {
             try {
@@ -121,14 +120,12 @@ public class UserDao {
     public void delete(Integer id) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
+
         try {
-            // mysql
-            // driver 로딩
             connection = dataSource.getConnection();
-            // query
-            preparedStatement = connection.prepareStatement(
-                    "delete from userinfo where id = ?");
-            preparedStatement.setInt(1, id);
+
+            StatementStrategy statementStrategy = new DeleteStatementStrategy();
+            preparedStatement = statementStrategy.makeStatement(id, connection);
             preparedStatement.executeUpdate();
         } finally {
             try {
