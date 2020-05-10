@@ -1,5 +1,6 @@
 package kr.ac.jejunu.user;
 
+import org.hamcrest.core.IsNull;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
@@ -65,6 +66,19 @@ public class UserDaoTests {
         User updatedUser = userDao.get(user.getId());
         assertThat(updatedUser.getName(), is(updatedName));
         assertThat(updatedUser.getPassword(), is(updatedPassword));
+    }
+
+    @Test
+    public void delete() throws SQLException {
+        User user = new User();
+        user.setName(name);
+        user.setPassword(password);
+        userDao.insert(user);
+
+        userDao.delete(user.getId());
+
+        User deletedUser = userDao.get(user.getId());
+        assertThat(deletedUser, IsNull.nullValue());
     }
 
 //    // 한라대학교
