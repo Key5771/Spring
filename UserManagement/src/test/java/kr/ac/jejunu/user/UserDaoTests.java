@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.SQLException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.core.Is.is;
 
 public class UserDaoTests {
@@ -16,7 +17,7 @@ public class UserDaoTests {
     public void testGet() throws SQLException, ClassNotFoundException {
         Integer id = 1;
 
-        UserDao userDao = new JejuUserDao();
+        UserDao userDao = new UserDao();
         User user = userDao.get(id);
         assertThat(user.getId(), is(id));
         assertThat(user.getName(), is(name));
@@ -28,8 +29,9 @@ public class UserDaoTests {
         user.setName(name);
         user.setPassword(password);
 
-        UserDao userDao = new JejuUserDao();
+        UserDao userDao = new UserDao();
         userDao.insert(user);
+        assertThat(user.getId(), greaterThan(0));
 
         User insertedUser = userDao.get(user.getId());
         assertThat(insertedUser.getName(), is(user.getName()));
@@ -42,7 +44,7 @@ public class UserDaoTests {
     public void testGetHalla() throws SQLException, ClassNotFoundException {
         Integer id = 1;
 
-        UserDao userDao = new HallaUserDao();
+        UserDao userDao = new UserDao();
         User user = userDao.get(id);
         assertThat(user.getId(), is(id));
         assertThat(user.getName(), is(name));
@@ -54,8 +56,9 @@ public class UserDaoTests {
         user.setName(name);
         user.setPassword(password);
 
-        UserDao userDao = new HallaUserDao();
+        UserDao userDao = new UserDao();
         userDao.insert(user);
+        assertThat(user.getId(), greaterThan(0));
 
         User insertedUser = userDao.get(user.getId());
         assertThat(insertedUser.getName(), is(user.getName()));
