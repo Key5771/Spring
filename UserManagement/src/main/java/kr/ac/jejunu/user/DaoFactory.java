@@ -23,7 +23,12 @@ public class DaoFactory {
 
     @Bean // new해주는 instance를 Spring이 해주는 역
     public UserDao userDao() {
-        return new UserDao(dataSource());
+        return new UserDao(jdbcContext());
+    }
+
+    @Bean
+    public JdbcContext jdbcContext() {
+        return new JdbcContext(dataSource());
     }
 
     @Bean
