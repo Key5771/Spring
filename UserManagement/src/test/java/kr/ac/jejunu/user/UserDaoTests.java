@@ -80,33 +80,4 @@ public class UserDaoTests {
         User deletedUser = userDao.get(user.getId());
         assertThat(deletedUser, IsNull.nullValue());
     }
-
-//    // 한라대학교
-//    @Test
-//    public void testGetHalla() throws SQLException, ClassNotFoundException {
-//        Integer id = 1;
-//
-//        ConnectionMaker connectionMaker = new HallaConnectionMaker();
-//        UserDao userDao = new UserDao(connectionMaker);
-//        User user = userDao.get(id);
-//        assertThat(user.getId(), is(id));
-//        assertThat(user.getName(), is(name));
-//        assertThat(user.getPassword(), is(password));
-//    }
-//
-//    public void insertUserHalla() throws SQLException, ClassNotFoundException {
-//        User user = new User();
-//        user.setName(name);
-//        user.setPassword(password);
-//
-//        ConnectionMaker connectionMaker = new HallaConnectionMaker();
-//        UserDao userDao = new UserDao(connectionMaker);
-//        userDao.insert(user);
-//        assertThat(user.getId(), greaterThan(0));
-//
-//        User insertedUser = userDao.get(user.getId());
-//        assertThat(insertedUser.getName(), is(user.getName()));
-//        assertThat(insertedUser.getPassword(), is(user.getPassword()));
-//
-//    }
 }
