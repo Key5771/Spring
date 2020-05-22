@@ -10,6 +10,20 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>userServlet</servlet-name>
-        <url-pattern></url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
+    <filter>
+        <filter-name>userFilter</filter-name>
+        <filter-class>kr.ac.jejunu.user.UserFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>userFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+    <listener>
+        <listener-class>kr.ac.jejunu.user.UserContextListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>kr.ac.jejunu.user.UserRequestListener</listener-class>
+    </listener>
 </web-app>
