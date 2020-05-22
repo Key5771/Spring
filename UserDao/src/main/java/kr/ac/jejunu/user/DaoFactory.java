@@ -11,13 +11,13 @@ import java.sql.Driver;
 
 @Configuration
 public class DaoFactory {
-    @Value("{db.classname}")
+    @Value("${db.classname}")
     private String className;
-    @Value("{db.url}")
+    @Value("${db.url}")
     private String url;
-    @Value("{db.username}")
+    @Value("${db.username}")
     private String userName;
-    @Value("{db.password}")
+    @Value("${db.password}")
     private String password;
 
 //    @Bean
