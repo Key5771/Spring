@@ -24,7 +24,6 @@
         <bean-name>viewResolver</bean-name>
         <bean-name>multipartResolver</bean-name>
     </view-resolvers>
-
 <!--    <beans:bean class="org.springframework.web.servlet.handler.SimpleServletHandlerAdapter" />-->
 <!--    <beans:bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">-->
 <!--        <beans:property name="mappings">-->
