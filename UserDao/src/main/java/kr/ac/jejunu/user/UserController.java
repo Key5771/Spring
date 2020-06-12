@@ -19,13 +19,9 @@ public class UserController {
     private final UserDao userDao;
 
     @RequestMapping(path = "/user")
-    // return 값이 String이면 기본적으로 view의 이름이다.
-    // forward, redirect 방법이 있다.
-    public String getUser(@ModelAttribute User user) {
-        Integer id = user.getId();
-        User user2 = userDao.get(id);
-        user.setName(user2.getName());
-        return "redirect:/upload";
+    // @ModelAttribute의 경우 생략 가능.
+    public @ModelAttribute User getUser(@RequestParam("id") Integer id) {
+        return userDao.get(id);
     }
 
     @RequestMapping("/exception")
