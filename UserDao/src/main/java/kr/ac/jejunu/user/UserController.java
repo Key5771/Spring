@@ -2,6 +2,7 @@ package kr.ac.jejunu.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,8 +19,8 @@ public class UserController {
     private final UserDao userDao;
 
     @RequestMapping(path = "/user")
-    public void getUser(@RequestParam("id") Integer id, Map map) {
-        map.put("user", userDao.get(id));
+    public void getUser(@RequestParam("id") Integer id, Model model) {
+        model.addAttribute("user", userDao.get(id));
     }
 
     @RequestMapping("/exception")
