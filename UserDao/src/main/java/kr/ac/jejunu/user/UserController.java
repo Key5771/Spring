@@ -19,8 +19,11 @@ public class UserController {
     private final UserDao userDao;
 
     @RequestMapping(path = "/user")
-    public void getUser(@RequestParam("id") Integer id, Model model) {
-        model.addAttribute("user", userDao.get(id));
+    public void getUser(@ModelAttribute User user) {
+        Integer id = user.getId();
+        User user2 = userDao.get(id);
+        user.setName(user2.getName());
+        
     }
 
     @RequestMapping("/exception")
