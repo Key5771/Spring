@@ -10,19 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
 public class UserController {
     private final UserDao userDao;
 
-    @RequestMapping(path = "/user/{id}")
-    public ModelAndView getUser(@PathVariable("id") Integer id, @CookieValue("JSESSIONID") String sessionId) {
-        ModelAndView modelAndView = new ModelAndView("user");
-        User user = userDao.get(id);
-        user.setName(sessionId);
-        modelAndView.addObject("user", user);
-        return modelAndView;
+    @RequestMapping(path = "/user")
+    public void getUser(@RequestParam("id") Integer id, Map map) {
+        map.put("user", userDao.get(id));
     }
 
     @RequestMapping("/exception")
