@@ -16,13 +16,11 @@ import java.io.*;
 public class UserController {
     private final UserDao userDao;
 
-    @RequestMapping(path = "/user")
-    public User getUser(@RequestParam("id") Integer id, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if(user == null)
-            user = userDao.get(id);
-        session.setAttribute("user", User.builder().name("Session").build());
-        return user;
+    @RequestMapping(path = "/user/{id}")
+    public ModelAndView getUser(@PathVariable("id") Integer id) {
+        ModelAndView modelAndView = new ModelAndView("user");
+        modelAndView.addObject("user", userDao.get(id));
+        return modelAndView;
     }
 
     @RequestMapping("/exception")
