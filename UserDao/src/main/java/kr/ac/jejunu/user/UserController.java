@@ -21,8 +21,8 @@ public class UserController {
     private final UserDao userDao;
 
     @RequestMapping(path = "/user")
-    public View getUser(@RequestParam("id") Integer id) {
-        return new RedirectView("/upload");
+    public User getUser(@RequestParam("id") Integer id) {
+        return userDao.get(id);
     }
 
     @RequestMapping("/exception")
