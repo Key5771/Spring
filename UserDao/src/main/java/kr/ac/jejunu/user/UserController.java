@@ -17,9 +17,11 @@ public class UserController {
     private final UserDao userDao;
 
     @RequestMapping(path = "/user/{id}")
-    public ModelAndView getUser(@PathVariable("id") Integer id) {
+    public ModelAndView getUser(@PathVariable("id") Integer id, @CookieValue("JSESSIONID") String sessionId) {
         ModelAndView modelAndView = new ModelAndView("user");
-        modelAndView.addObject("user", userDao.get(id));
+        User user = userDao.get(id);
+        user.setName(sessionId);
+        modelAndView.addObject("user", user);
         return modelAndView;
     }
 
