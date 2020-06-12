@@ -3,14 +3,24 @@ package kr.ac.jejunu.user;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.cbor.MappingJackson2CborHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import org.springframework.web.servlet.view.xml.MappingJackson2XmlView;
+
+import java.util.List;
 
 @Configuration
 @EnableWebMvc // <annotation-driven /> 역할 -> Spring MVC를 하려면 무조건 해야함.
 @ComponentScan("kr.ac.jejunu.user") // <context:component-scan> 역할.
 public class WebConfig implements WebMvcConfigurer {
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.add(new MappingJackson2HttpMessageConverter());
+    }
+
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         configurer.mediaType("js", MediaType.APPLICATION_JSON)
